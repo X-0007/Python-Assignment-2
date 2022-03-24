@@ -5,6 +5,7 @@ import requests as req
 from random import shuffle
 from PIL import Image
 import urllib.request
+from cryptography.fernet import Fernet
 
 
 def searchImages(query, key, count='inf'):
@@ -32,16 +33,25 @@ def searchImages(query, key, count='inf'):
 
     return res_images if count == 'inf' else res_images[:count]
 
-def search(query, path2key, count):
+def Fernet_dcryptr(data, encryp_key):
+    return Fernet(encryp_key).decrypt(data).decode('utf-8')
+
+# print(Fernet_dcryptr(b'gAAAAABiPM4LEp3HkhMRjWeYst9LKmaCfPPiV7IsBQ_CmFt8S3jX9vWE-INxgfXOjTjNtZhNGbcqmt-2WyP0UWEuCTBpB1SYSlT1MHiI9m50OxURfqNXAc1Hv0wgfI_g6uaRh73C0QCPpUhG8qUNxGejq5TS8BH4hGEA3hix3WvANuUgMFmHCc0=', 'E7lqUv5Bp3isk9jVOsJm5LfMm-m_hF_5KdLuD7F-40Y='))
+
+def search(query, path2key, count, path2encryp_key):
     f = open(path2key, 'r')
-    key = f.read()
+    encrypted_API_key = f.read().encode('utf-8')
     f.close()
+    f = open(path2encryp_key, 'r')
+    encryp_key = f.read()
+    f.close()
+    key = Fernet_dcryptr(encrypted_API_key, encryp_key)
     searches = searchImages(query, key, count)
-    print(searches)
+    # print(searches)
     return searches
 
-def getImages(query, path2key, count, img_name):
-    res_images = search(query, path2key, count)
+def getImages(query, path2key, count, img_name, path2encryp_key):
+    res_images = search(query, path2key, count, path2encryp_key)
     images_names = []
     for i in range(len(res_images)):
         # urllib.request.urlretrieve(searches[i], f"Img{i + 1}.png")
@@ -52,7 +62,5 @@ def getImages(query, path2key, count, img_name):
         images_names.append(f"{img_name}{i + 1}.png")
         # img.show()
     return images_names
-
-# print(getImages('Meghalaya', "./RSS/PVT_RS/pvt.txt", 2, 'Img'))
 
 

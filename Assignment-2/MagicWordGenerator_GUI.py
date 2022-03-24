@@ -1,18 +1,19 @@
 ''' MODULE FOR THE MAGIC WORD GENERATOR GUI PROGRAM '''
 
 
+from random import choice
 from tkinter import Tk, Frame, Label, Text, Button
 from PIL import Image, ImageTk
 from SearchImages import getImages
-from random import choice
 
 
 path2key = "./RSS/PVT_RS/pvt.txt"
+path2encryp_key = "./RSS/PVT_RS/key.txt"
 
-def magic(fr, city_name, pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key):
-    print(getImages(city_name, path2key, 1, 'CityImg'))
-    if getImages(city_name, path2key, 1, 'CityImg'):
-        city_images = getImages(city_name, path2key, 1, 'CityImg')[0]
+def magic(fr, city_name, pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key, path2encryp_key):
+    print(getImages(city_name, path2key, 1, 'CityImg', path2encryp_key))
+    if getImages(city_name, path2key, 1, 'CityImg', path2encryp_key):
+        city_images = getImages(city_name, path2key, 1, 'CityImg', path2encryp_key)[0]
         # print(city_images)
 
         city_img = Image.open(f"./RSS/SRCH_IMGS/{city_images}").resize((200, 300))
@@ -24,9 +25,9 @@ def magic(fr, city_name, pet_or_movie_name, lb_city_image, lb_pet_or_movie_image
         lb_city_image.grid(row=0, column=0, pady=25)
 
 
-    print(getImages(pet_or_movie_name, path2key, 1, 'PetOrMovieImg'))
-    if getImages(pet_or_movie_name, path2key, 1, 'PetOrMovieImg'):
-        pet_or_movie_images = getImages(pet_or_movie_name, path2key, 1, 'PetOrMovieImg')[0]
+    print(getImages(pet_or_movie_name, path2key, 1, 'PetOrMovieImg', path2encryp_key))
+    if getImages(pet_or_movie_name, path2key, 1, 'PetOrMovieImg', path2encryp_key):
+        pet_or_movie_images = getImages(pet_or_movie_name, path2key, 1, 'PetOrMovieImg', path2encryp_key)[0]
         # print(pet_or_movie_images)
 
         pet_or_movie_img = Image.open(f"./RSS/SRCH_IMGS/{pet_or_movie_images}").resize((200, 300))
@@ -38,13 +39,13 @@ def magic(fr, city_name, pet_or_movie_name, lb_city_image, lb_pet_or_movie_image
         lb_pet_or_movie_image.grid(row=0, column=2, pady=25)
 
 
-def setText(fr, tb_magic_word, tb_city_name, tb_pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key):
+def setText(fr, tb_magic_word, tb_city_name, tb_pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key, path2encryp_key):
     tb_magic_word.delete(1.0, 'end')
     city_name = tb_city_name.get('1.0', 'end - 1c')
     pet_or_movie_name = tb_pet_or_movie_name.get('1.0', 'end - 1c')
     tb_magic_word.insert(1.0, city_name + pet_or_movie_name)
     print("The Majestic Python is performing it's magic...")
-    magic(fr, city_name, pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key)
+    magic(fr, city_name, pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key, path2encryp_key)
     print('\nThe magical word is', city_name + pet_or_movie_name)
 
 def clear(tb_city_name, tb_pet_or_movie_name, tb_magic_word):
@@ -78,7 +79,7 @@ def magicWordGenerator_GUI():
     spell = choice(spells)
 
 
-    btn = Button(fr, text=spell, command=lambda: setText(fr, tb_magic_word, tb_city_name, tb_pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key))
+    btn = Button(fr, text=spell, command=lambda: setText(fr, tb_magic_word, tb_city_name, tb_pet_or_movie_name, lb_city_image, lb_pet_or_movie_image, path2key, path2encryp_key))
 
     lb_magic_word = Label(fr, text='The Magic Word is: ')
     tb_magic_word = Text(fr, width=30, height=1)
@@ -116,7 +117,5 @@ def magicWordGenerator_GUI():
 
 
     root.mainloop()
-
-# magicWordGenerator_GUI()
 
 

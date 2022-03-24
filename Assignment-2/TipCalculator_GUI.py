@@ -1,4 +1,4 @@
-''' MODULE FOR THE RESTAURANT CLI PROGRAM '''
+''' MODULE FOR THE RESTAURANT GUI PROGRAM '''
 
 
 from tkinter import Tk, Frame, Label, Text, Button
@@ -36,7 +36,7 @@ def tipCalculator_GUI():
     root.geometry(f'800x600-{1900 - root.winfo_screenwidth()}-{1000 - root.winfo_screenheight()}')
     fr = Frame(root)
 
-    logo_img = Image.open("RSS/Images/Restaurant Tip Calculator Images/Restaurant Logo.jpg").resize((100, 100))
+    logo_img = Image.open("RSS/Images/Restaurant Tip Calculator GUI Images/Restaurant Logo.jpg").resize((100, 100))
     logo_im = ImageTk.PhotoImage(logo_img)
 
 
