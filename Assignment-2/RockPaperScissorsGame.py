@@ -1,6 +1,4 @@
-''' MODULE FOR THE ROCK, PAPER, SCISSORS GAME '''
-# An Infinite Rolling CLI Menu Sub-Sequence has also been provided for Player's attraction, attention and ease. #
-# All the Unchecked Exceptions generating have also been handeled here #
+''' MODULE FOR THE ROCK, PAPER, SCISSORS CLI GAME '''
 
 
 from random import randint
@@ -42,6 +40,6 @@ def RPS_Game():
             RPS_Game()
     except (Exception,):
         print('Oops! Invalid Input! Please try again...\n')
-        RPS_Game()
+    RPS_Game()
 
 

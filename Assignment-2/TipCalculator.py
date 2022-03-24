@@ -1,4 +1,5 @@
-''' MODULE FOR THE RESTAURANT TIP CALCULATOR PROGRAM '''
+''' MODULE FOR THE RESTAURANT TIP CALCULATOR CLI PROGRAM '''
+
 
 def tipCalculator():
     print('Welcome to the tip Calculator.')

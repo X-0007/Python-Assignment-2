@@ -1,4 +1,4 @@
-''' MODULE FOR THE TREASURE HUNTING ISLAND PROGRAM '''
+''' MODULE FOR THE TREASURE HUNTING ISLAND CLI GAME '''
 
 
 def treasureIsland():
@@ -20,5 +20,8 @@ def treasureIsland():
             print('Attacked by Trout.\nGame Over.')
     else:
         print('Fall into a hole.\nGame Over.')
+    choice = input("Enter 'Y/y' to Play again and 'N/n' or any other Key to Exit the Treasure Island Game.\n")
+    if choice in ('Y', 'y'):
+        treasureIsland()
 
 
