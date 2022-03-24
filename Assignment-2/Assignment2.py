@@ -2,7 +2,7 @@
 
 # An Infinite Rolling CLI Menu Sub-Sequence has also been provided for User's attraction, attention and ease. #
 # The program has also been made robust enough to cope-up and handle the Uncheked Exceptions generating. #
-
+# Menu 5 might not work perfectly due to not pushing of sensitive API and Fernet Encryption Key data to the Remote Repo for security reasons.
 
 
 from MagicWordGenerator import magicWordGenerator

@@ -1,4 +1,5 @@
 ''' MODULE FOR THE MAGIC WORD GENERATOR GUI PROGRAM '''
+# Module might not work perfectly due to not pushing of sensitive API and Fernet Encryption Key data to the Remote Repo for security reasons.
 
 
 from random import choice
